@@ -84,7 +84,7 @@ Matplotlib, Seaborn
 
 # 📄 Laporan Lengkap
 
-Laporan lengkap proyek ini tersedia pada file laporan.md.
+Laporan lengkap proyek ini tersedia pada file laporan.md
 
 # ✍️ Kontributor
 
