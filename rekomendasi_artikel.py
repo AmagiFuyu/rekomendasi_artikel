@@ -30,7 +30,7 @@ from nltk.stem import PorterStemmer
 import re
 
 """## Download NLTK
-Mendwonload korpus "stopwords" dari library NLTK
+Mendownload korpus "stopwords" dari library NLTK
 """
 
 nltk.download('stopwords')
@@ -43,7 +43,7 @@ Memuat Dataset Artikel, Struktur dataset terdiri dari dua kolom utama:
 2. `'Article'.`
 """
 
-df = pd.read_csv('/content/articles.csv', encoding='latin1')
+df = pd.read_csv('articles.csv', encoding='latin1')
 df.head()
 
 """# 4. Explatory Data Analysis (EDA)
@@ -59,6 +59,13 @@ Menghitung dan menampilkan jumlah nilai yang hilang (NaN) di setiap kolom DataFr
 """
 
 print(df.isnull().sum())
+
+"""## Menangani Duplikat
+Tahapan ini Mengecek Apakah Ada Duplikat, dan bila ada maka duplikasi dihapus
+"""
+
+df.drop_duplicates(inplace=True)
+print(df.duplicated().sum())
 
 """## Melihat Sampel
 Menampilkan 5 Sampel dari DataFrame
@@ -111,7 +118,7 @@ cos_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
 Fungsi get_recommendations menerima indeks artikel dan mengembalikan daftar top-n artikel paling mirip berdasarkan skor cosine similarity. Artikel input akan dilewati dalam hasil.
 """
 
-def get_recommendations(index, top_n=10):
+def get_recommendations(index, top_n=5):
     sim_scores = list(enumerate(cos_sim[index]))
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
     sim_scores = sim_scores[1:top_n+1]  # Skip artikel itu sendiri
@@ -119,42 +126,42 @@ def get_recommendations(index, top_n=10):
     return df.iloc[article_indices][['Title']]
 
 # Contoh rekomendasi
-article_id = 10
+article_id = 3
 print("Artikel utama:")
 print(df.iloc[article_id]['Title'])
 print("\nRekomendasi artikel:")
 print(get_recommendations(article_id))
 
-"""# 9. Evaluasi
-Evaluasi dilakukan dengan cara observasi manual terhadap hasil rekomendasi artikel.
+"""# 9. Kesimpulan
+Evaluasi dilakukan dengan cara observasi manual terhadap hasil rekomendasi artikel karena dataset tidak menyediakan label relevansi atau interaksi pengguna.
 
-Contoh:
-
-Best Books to Learn Computer Vision
+Artikel masukan: "Multiclass Classification Algorithms in Machine Learning"
 
 Rekomendasi yang dihasilkan:
-1. Best Books to Learn NLP
-2. Best Books to Learn Deep Learning
-3. Best Books to Learn Data Analysis
-4. Best Python Frameworks to Build APIs
-5. Best Resources to Learn Python
-6. Voice Recorder using Python
-7. Multiclass Classification Algorithms in Machine Learning
-8. Applications of Deep Learning
-9. Apple Stock Price Prediction with Machine Learning
-10. Use Cases of Different Machine Learning Algorithms
+
+1. Clustering Algorithms in Machine Learning
+
+2. Use Cases of Different Machine Learning Algorithms
+
+3. News Classification with Machine Learning
+
+4. Best Books to Learn Deep Learning
+
+5. Assumptions of Machine Learning Algorithms
 
 Analisis:
-- Mayoritas artikel yang direkomendasikan masih dalam topik yang berkaitan dengan *Machine Learning*, *Deep Learning*, dan *Python*, yang secara tematik memang berhubungan dengan Computer Vision.
 
-- Judul-judul seperti “Best Books to Learn NLP” dan “Best Books to Learn Deep Learning” menunjukkan bahwa sistem berhasil mengenali pola dari artikel dengan format judul yang mirip dan konten serupa.
+* Rekomendasi yang diberikan memiliki topik yang cukup relevan dengan artikel utama.
 
-- Ini menunjukkan bahwa pendekatan Content-Based Filtering dengan TF-IDF dan cosine similarity bekerja cukup efektif pada dataset ini.
+* Beberapa artikel membahas algoritma klasifikasi, penggunaan machine learning, serta pembelajaran mendalam (deep learning).
+
+* Hal ini menunjukkan bahwa sistem mengenali kemiripan tema dan topik meskipun tidak menggunakan metadata atau label eksplisit.
 
 Keterbatasan:
-- Karena tidak ada label relevansi atau interaksi pengguna, tidak bisa dihitung metrik seperti Precision@k atau Recall.
 
-- Rekomendasi bersifat statis, belum mempertimbangkan preferensi atau histori pengguna.
+* Karena tidak ada label relevansi atau interaksi pengguna, tidak bisa dihitung metrik seperti Precision@k atau Recall.
+
+* Rekomendasi bersifat statis, belum mempertimbangkan preferensi atau histori pengguna.
 
 Kesimpulan Evaluasi:
 
@@ -170,10 +177,9 @@ berdasarkan kemiripan konten antarartikel. Metode yang digunakan meliputi:
 - Ekstraksi fitur: TF-IDF Vectorizer digunakan untuk merepresentasikan artikel dalam bentuk vektor numerik.
 - Penghitungan kemiripan: cosine similarity menghitung tingkat kemiripan antar artikel.
 
-Hasil evaluasi menunjukkan bahwa sistem mampu menghasilkan rekomendasi artikel yang relevan secara tematik
-terhadap artikel acuan. Sebagai contoh, untuk artikel berjudul "Best Books to Learn Computer Vision", sistem
-berhasil merekomendasikan artikel lain yang membahas buku-buku pembelajaran terkait bidang NLP, Deep Learning,
-dan Python, yang masih dalam satu ranah keilmuan.
+Hasil evaluasi menunjukkan bahwa sistem mampu menghasilkan rekomendasi artikel yang relevan secara tematik dengan artikel acuan. Sebagai contoh, untuk artikel "Multiclass Classification Algorithms in Machine Learning",
+sistem berhasil merekomendasikan artikel lain yang membahas clustering, penggunaan machine learning, dan deep learning,
+yang masih dalam ranah keilmuan yang sama.
 
 Kelebihan:
 - Tidak memerlukan data interaksi pengguna.

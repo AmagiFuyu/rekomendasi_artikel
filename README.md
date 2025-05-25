@@ -56,17 +56,18 @@ Kesimpulan
 
 Contoh artikel masukan:
 
-"Best Books to Learn Computer Vision"
+"Multiclass Classification Algorithms in Machine Learning"
 
-Rekomendasi yang diberikan:
+1. Clustering Algorithms in Machine Learning
 
-Best Books to Learn NLP
+2. Use Cases of Different Machine Learning Algorithms
 
-Best Books to Learn Deep Learning
+3. News Classification with Machine Learning
 
-Best Books to Learn Data Analysis
+4. Best Books to Learn Deep Learning
 
-Best Python Frameworks to Build APIs
+5. Assumptions of Machine Learning Algorithms
+
 
 Rekomendasi dinilai cukup relevan berdasarkan topik yang sama.
 

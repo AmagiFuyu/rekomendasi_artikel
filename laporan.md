@@ -91,15 +91,17 @@ Evaluasi dilakukan secara kualitatif (manual) karena dataset tidak menyediakan l
 
 Contoh:
 
-Artikel utama: "Best Books to Learn Computer Vision"
+Artikel utama: "Multiclass Classification Algorithms in Machine Learning"
 
-Rekomendasi:
+1. Clustering Algorithms in Machine Learning
 
-Best Books to Learn NLP
+2. Use Cases of Different Machine Learning Algorithms
 
-Best Books to Learn Deep Learning
+3. News Classification with Machine Learning
 
-Best Books to Learn Data Analysis
+4. Best Books to Learn Deep Learning
+
+5. Assumptions of Machine Learning Algorithms
 
 Rekomendasi tersebut relevan secara tematik, menunjukkan bahwa sistem bekerja dengan baik dalam mengenali kesamaan topik.
 
