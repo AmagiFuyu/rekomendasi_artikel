@@ -82,11 +82,43 @@ Setelah preprocessing, dilakukan vektorisasi menggunakan TF-IDF untuk menghasilk
 
 # 5. Modeling
 
-Metode yang digunakan:
+Pendekatan yang digunakan dalam proyek ini adalah Content-Based Filtering. Metode ini merekomendasikan item (artikel) berdasarkan kemiripan kontennya dengan item lain yang sudah diketahui relevan. Dalam konteks proyek ini, kemiripan antar artikel dihitung menggunakan TF-IDF vectorizer dan cosine similarity.
 
-Content-Based Filtering: Menggunakan cosine similarity antara vektor TF-IDF untuk mencari artikel yang paling mirip.
+## Representasi Artikel: TF-IDF
 
-Fungsi get_recommendations dikembangkan untuk menerima input indeks artikel dan mengembalikan top-N rekomendasi artikel mirip.
+Setiap artikel diubah menjadi representasi numerik menggunakan teknik TF-IDF (Term Frequency - Inverse Document Frequency). Teknik ini mengukur seberapa penting suatu kata dalam dokumen relatif terhadap seluruh korpus:
+
+    TF (Term Frequency): Mengukur seberapa sering suatu kata muncul dalam dokumen.
+
+    IDF (Inverse Document Frequency): Memberikan bobot rendah untuk kata-kata umum yang sering muncul di banyak dokumen, dan bobot tinggi untuk kata-kata yang lebih spesifik.
+
+Setiap artikel direpresentasikan sebagai vektor dalam ruang berdimensi tinggi, di mana setiap dimensi mewakili kata tertentu dalam korpus.
+
+## Mengukur Kemiripan: Cosine Similarity
+
+Setelah representasi vektor diperoleh, kemiripan antar artikel dihitung menggunakan cosine similarity. Cosine similarity mengukur sudut kosinus antara dua vektor dalam ruang fitur. Semakin kecil sudutnya (semakin sejajar vektornya), semakin mirip kedua artikel.
+
+Nilai cosine similarity berkisar antara:
+
+    * 1.0 → artikel sangat mirip
+
+    * 0.0 → tidak ada kemiripan
+
+## Hasil Top-N Recommendation
+
+Berikut adalah contoh hasil rekomendasi sistem untuk artikel dengan judul:
+
+Multiclass Classification Algorithms in Machine Learning
+
+1. Clustering Algorithms in Machine Learning
+
+2. Use Cases of Different Machine Learning Algorithms
+
+3. News Classification with Machine Learning
+
+4. Best Books to Learn Deep Learning
+
+5. Assumptions of Machine Learning Algorithms
 
 # 6. Evaluation
 

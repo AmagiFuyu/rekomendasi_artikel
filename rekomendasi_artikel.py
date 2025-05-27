@@ -132,7 +132,7 @@ print(df.iloc[article_id]['Title'])
 print("\nRekomendasi artikel:")
 print(get_recommendations(article_id))
 
-"""# 9. Kesimpulan
+"""# 9. Evaluasi
 Evaluasi dilakukan dengan cara observasi manual terhadap hasil rekomendasi artikel karena dataset tidak menyediakan label relevansi atau interaksi pengguna.
 
 Artikel masukan: "Multiclass Classification Algorithms in Machine Learning"
